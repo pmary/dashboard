@@ -15,6 +15,15 @@ angular.module('starter')
       ],
       getPercentage : function(){
         return Math.round((this.globalSpend / this.globalBudget) * 100,2);
+      },
+      getDiffTable : function(){
+        var t = [];
+
+        this.insertionOrders.forEach(function(elem){
+          t.push(Math.abs(elem.budget-elem.spend));
+        });
+
+        return t;
       }
     };
 
@@ -49,6 +58,38 @@ angular.module('starter')
       },
       tooltip: {
         show:false
+      }
+    });
+
+    var splineChart = c3.generate({
+      bindto: '#splineChart',
+      data: {
+        columns: [
+          ['data'].concat($scope.budgetTile.getDiffTable())
+        ],
+        types: {
+          data: 'area-spline'
+        },
+        colors: {
+          data: '#55bac1'
+        }
+      },
+      legend: { show: false },
+      padding: {
+        bottom: 0
+      },
+      axis: {
+        y: {
+          show: false
+        },
+        x: {
+          show: false
+        }
+      },
+      tooltip: { show: false },
+      size: {
+        width: 200,
+        height: 100
       }
     });
   });
