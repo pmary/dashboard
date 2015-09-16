@@ -82,5 +82,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.controllers2
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/summary');
+  $urlRouterProvider.otherwise('/app/kpi');
 });
